@@ -5,7 +5,7 @@
              x:Class="AppNav2.Vistas.InicioTabbed"
              Title="Inicio">
     <!-- Primera pestaña -->
-    <local:Depositos Title="Depositos"/>
+    <local:Cuentas Title="Cuentas"/>
     
     <!-- Segunda pestaña -->
     <local:Transacciones Title="Transacciones"/>

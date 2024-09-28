@@ -12,9 +12,8 @@
                     SelectionMode="Single">
         <CollectionView.ItemsSource>
             <x:Array Type="{x:Type local:FlyoutPageItem}">
-                <local:FlyoutPageItem NewTitle="LogIn" TargetType="{x:Type detalles:LogIn}" />
                 <local:FlyoutPageItem NewTitle="Inicio" TargetType="{x:Type detalles:InicioTabbed}" />
-                <local:FlyoutPageItem NewTitle="Transacciones" TargetType="{x:Type detalles:Transacciones}"/>
+                <local:FlyoutPageItem NewTitle="Depositos" TargetType="{x:Type detalles:Depositos}"/>
             </x:Array>
         </CollectionView.ItemsSource>
         <CollectionView.ItemTemplate>

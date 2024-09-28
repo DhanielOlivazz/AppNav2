@@ -1,65 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppNav2.Vistas.Transacciones"
-             Title="Transacciones">
-    <FlyoutPage.Flyout>
-        <ContentPage Title="Menú">
-            <ContentPage.ToolbarItems>
-                <ToolbarItem Text="Salir" Order="Primary" Priority="1"/>
-            </ContentPage.ToolbarItems>
-            <StackLayout>
-                <Button Text="Cuentas" />
-                <Button Text="Depósitos" />
-            </StackLayout>
-        </ContentPage>
-    </FlyoutPage.Flyout>
+             xmlns:local="clr-namespace:AppNav2.Data"
+             Title="Transacciones"
+             BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salir" Order="Primary" Priority="1" />
+    </ContentPage.ToolbarItems>
 
-    <FlyoutPage.Detail>
-        <TabbedPage>
-            <TabbedPage.Children>
-                <ContentPage Title="Cuentas" IconImageSource="dollarsignimg.png">
-                    <StackLayout>
-                        <Label Text="Transacciones" FontSize="Large" HorizontalOptions="Center"/>
-                        <Label Text="Última Actualización 23/09/2024 11:32 AM" FontSize="Small" HorizontalOptions="Center"/>
-                        <ListView x:Name="TransactionsList">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextCell Text="{Binding Description}" Detail="{Binding Amount}" />
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
-                </ContentPage>
+    <StackLayout Padding="10">
+        <!-- Última actualización centrada -->
+        <Label Text="Última Actualización 23/09/2024 11:32 AM" FontSize="Small" HorizontalOptions="Center" />
 
-                <!-- Página de Depósitos -->
-                <ContentPage Title="Depósitos" IconImageSource="correoimg.png">
-                    <StackLayout Padding="20">
-                        <Label Text="Depósito desde celular" FontSize="28" HorizontalOptions="Center" Margin="0,20" />
-                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
-                            <Frame CornerRadius="10" Padding="10" Margin="0,10,0,0" BorderColor="Black">
-                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                                    <Image Source="camera_icon.png" HeightRequest="30" VerticalOptions="Center" Margin="0,0,10,0" />
-                                    <Label Text="Frente del cheque" HorizontalOptions="Center" VerticalOptions="Center" />
-                                </StackLayout>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnFrenteChequeTapped" />
-                                </Frame.GestureRecognizers>
-                            </Frame>
+        <!-- Lista de transacciones -->
+        <ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10,0">
+                            <!-- Estatus de la transacción -->
+                            <Label Text="{Binding Status}" FontAttributes="Bold" />
 
-                            <Frame CornerRadius="10" Padding="10" Margin="0,10,0,0" BorderColor="Black">
-                                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                                    <Image Source="camera_icon.png" HeightRequest="30" VerticalOptions="Center" Margin="0,0,10,0" />
-                                    <Label Text="Posterior del cheque" HorizontalOptions="Center" VerticalOptions="Center" />
-                                </StackLayout>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnPosteriorChequeTapped" />
-                                </Frame.GestureRecognizers>
-                            </Frame>
+                            <!-- Grid con tres columnas: Fecha, Descripción, Monto -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Fecha de la transacción -->
+                                <Label Text="{Binding Date}" Grid.Column="0" />
+
+                                <!-- Descripción de la transacción -->
+                                <Label Text="{Binding Description}" Grid.Column="1" />
+
+                                <!-- Monto de la transacción -->
+                                <Label Text="{Binding Amount}" Grid.Column="2" HorizontalOptions="End" />
+                            </Grid>
                         </StackLayout>
-                    </StackLayout>
-                </ContentPage>
-            </TabbedPage.Children>
-        </TabbedPage>
-    </FlyoutPage.Detail>
-</FlyoutPage>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!-- Datos de transacciones manuales -->
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type local:Transactions}">
+                    <local:Transactions Status="Procesando" Date="12/30/2024" Description="La Colonia" Amount="-$23.79" />
+                    <local:Transactions Status="Completa" Date="12/29/2024" Description="Meridional" Amount="-$19.25" />
+                    <local:Transactions Status="Completa" Date="12/27/2024" Description="PetroNIC" Amount="-$65.00" />
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
+    </StackLayout>
+</ContentPage>
