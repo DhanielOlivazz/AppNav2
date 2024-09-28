@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppNav2"
+             xmlns:localVistas="clr-namespace:AppNav2.Vistas"
+             x:Class="AppNav2.Aplicacion">
+    <FlyoutPage.Flyout>
+        <local:Flyout x:Name="FlyoutLoL"/>
+    </FlyoutPage.Flyout>
+    
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <localVistas:InicioTabbed />
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+
+</FlyoutPage>

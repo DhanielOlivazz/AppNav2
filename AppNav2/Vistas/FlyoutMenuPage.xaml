@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppNav2.Data"
+             xmlns:detalles="clr-namespace:AppNav2.Vistas"
+             x:Class="AppNav2.Flyout"
+             Padding="0,40,0,0"
+             IconImageSource="hamburguesa.png"
+             Title="Inicio">
+    <CollectionView x:Name="collectionview"
+                    x:FieldModifier="public"
+                    SelectionMode="Single">
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type local:FlyoutPageItem}">
+                <local:FlyoutPageItem NewTitle="LogIn" TargetType="{x:Type detalles:LogIn}" />
+                <local:FlyoutPageItem NewTitle="Inicio" TargetType="{x:Type detalles:InicioTabbed}" />
+                <local:FlyoutPageItem NewTitle="Transacciones" TargetType="{x:Type detalles:Transacciones}"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="5, 10" BackgroundColor="Grey">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"
+                           Margin="20,0"
+                           Text="{Binding NewTitle}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppNav2.Vistas"
+             x:Class="AppNav2.Vistas.InicioTabbed"
+             Title="Inicio">
+    <!-- Primera pestaña -->
+    <local:Depositos Title="Depositos"/>
+    
+    <!-- Segunda pestaña -->
+    <local:Transacciones Title="Transacciones"/>
+
+</TabbedPage>
